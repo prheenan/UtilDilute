@@ -325,11 +325,11 @@ def PrintSolutionSteps(Stats,Volume,vol_units="uL",BufferName="buffer",
                fmt_str + " {:s} in solution").\
               format(vol_stock,vol_units,conc_stock,conc_units,name,
                      desired_conc,conc_units))
-    print("\tRemainder is ({:.1f}{:s}) of {:s}".format(BufferVolume,
-                                                       vol_units,BufferName))
+    print(("\tRemainder is (" + fmt_str + "{:s}) of {:s}").\
+          format(BufferVolume,vol_units,BufferName))
     if (PostVolume > 1e-12):
-        print("\tTo use, add ({:.1f}{:s}) of {:s}".format(PostVolume,
-                                                          vol_units,BufferName))
+        print(("\tTo use, add (" + fmt_str + "{:s}) of {:s}").\
+              format(PostVolume,vol_units,BufferName))
 
   
 
