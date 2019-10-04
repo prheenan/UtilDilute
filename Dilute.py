@@ -295,7 +295,7 @@ def PrintSerialSteps(Stock,Volumes,Desired,
                           string_vol=VolString,string_buffer=BufferString)
 
 def PrintSolutionSteps(Stats,Volume,vol_units="uL",BufferName="buffer",
-                       PostVolume=0):
+                       PostVolume=0,fmt_str="{:.2f}"):
     """
     Prints the steps to seriall dilute things
     Args:
@@ -317,17 +317,19 @@ def PrintSolutionSteps(Stats,Volume,vol_units="uL",BufferName="buffer",
     assert (BufferVolume > -Volume/100) , \
         "Warning: cant make this solution. Need a negative volume of buffer. "+\
         "Use more concentrated stocks"
-    print("In a total solution of {:.1f}{:s}...".format(Volume,vol_units))
+    print(("In a total solution of " + fmt_str + "{:s}...").
+          format(Volume,vol_units))
     for (name,conc_units,conc_stock,desired_conc,_),vol_stock in\
         zip(Stats,Volumes):
-        print("\t{:.2f}{:s} of {:.2f}{:s} {:s} for {:.2f}{:s} in solution".\
+        print(("\t" + fmt_str + "{:s} of " + fmt_str + " {:s} {:s} for " +\
+               fmt_str + " {:s} in solution").\
               format(vol_stock,vol_units,conc_stock,conc_units,name,
                      desired_conc,conc_units))
-    print("\tRemainder is ({:.1f}{:s}) of {:s}".format(BufferVolume,
-                                                       vol_units,BufferName))
+    print(("\tRemainder is (" + fmt_str + "{:s}) of {:s}").\
+          format(BufferVolume,vol_units,BufferName))
     if (PostVolume > 1e-12):
-        print("\tTo use, add ({:.1f}{:s}) of {:s}".format(PostVolume,
-                                                          vol_units,BufferName))
+        print(("\tTo use, add (" + fmt_str + "{:s}) of {:s}").\
+              format(PostVolume,vol_units,BufferName))
 
   
 
