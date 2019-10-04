@@ -6,21 +6,14 @@ import matplotlib.pyplot as plt
 import sys
 
 sys.path.append("../")
-import DilutionUtil 
+import Dilute 
 
 def run():
-    HEPES_1x = 50
-    KCL_1x = 25
-    ZnCl2_1x = 0.1
-    Stats = [ ["HEPES","mM",975,HEPES_1x,0],
-              ["KCl","mM",2500,KCL_1x,0],
-              ["ZnCl2","mM",15,ZnCl2_1x,0],
-              ["TCEP","mM",50,1,0],
-    ]
-    # I convert it into the 4x buffer
-    conc_mult = 4
-    stats_4x = copy.deepcopy(Stats)
-    for i in range(len(Stats)):
-        stats_4x[i][3] *= conc_mult
-    DilutionUtil.PrintSolutionSteps(stats_4x,50,"mL",
-                                    BufferName="DI H20")
+    Stats = [ ["EDTA","mM",420,1,0],
+              ["Tris-HCl","mM",1000,10,0]]
+    Dilute.PrintSolutionSteps(Stats,1000,"mL",
+                              BufferName="DI H20")
+
+
+if __name__ == "__main__":
+    run()
